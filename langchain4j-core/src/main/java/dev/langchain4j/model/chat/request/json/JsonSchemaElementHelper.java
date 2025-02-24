@@ -1,6 +1,7 @@
 package dev.langchain4j.model.chat.request.json;
 
 import static dev.langchain4j.internal.TypeUtils.isJsonBoolean;
+import static dev.langchain4j.internal.TypeUtils.isJsonDate;
 import static dev.langchain4j.internal.TypeUtils.isJsonInteger;
 import static dev.langchain4j.internal.TypeUtils.isJsonNumber;
 import static dev.langchain4j.internal.TypeUtils.isJsonString;
@@ -34,6 +35,13 @@ public class JsonSchemaElementHelper {
         if (isJsonString(clazz)) {
             return JsonStringSchema.builder()
                     .description(Optional.ofNullable(fieldDescription).orElse(descriptionFrom(clazz)))
+                    .build();
+        }
+
+        if (isJsonDate(clazz)) {
+            return JsonStringSchema.builder()
+                    .description(Optional.ofNullable(fieldDescription).orElse(descriptionFrom(clazz)))
+                    .format("yyyy-MM-dd")
                     .build();
         }
 

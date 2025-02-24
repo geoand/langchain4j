@@ -2,6 +2,7 @@ package dev.langchain4j.internal;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class TypeUtils {
@@ -40,5 +41,9 @@ public class TypeUtils {
 
     public static boolean isJsonArray(Class<?> type) {
         return type.isArray() || Iterable.class.isAssignableFrom(type);
+    }
+
+    public static boolean isJsonDate(Class<?> type) {
+        return type == LocalDate.class;
     }
 }
